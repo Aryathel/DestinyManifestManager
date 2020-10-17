@@ -4,4 +4,5 @@
 """
 
 from .Manifest import Manifest
+from .ManifestReader import ManifestReader
 from .Errors import LocaleException
