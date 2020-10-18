@@ -5,15 +5,13 @@ class ManifestReader:
 
     This reader is used to access all necessary information in the manifests.
 
+    **Parameters**:
+        - **manifestFile** (:class:`str`) - The file location of a manifest file to access data from.
+
     .. note::
         This is an **in development** build, and will likely have many bugs.
     """
     def __init__(self, manifestFile):
-        """This class manages all direct interactions with the manifest data.
-
-        **Parameters**:
-            - **manifestFile** (:class:`str`) - The file location of a manifest file to access data from.
-        """
         self.connection = sqlite3.connect(manifestFile)
         self.cursor = self.connection.cursor()
 
@@ -26,10 +24,10 @@ class ManifestReader:
         **Parameters**:
             - **hash** (:class:`str`) - The hash of the activity to search for.
             - **definition** (:class:`str`) - The category of activities to search for the given activity hash in.
-            - **identifier** (:classL`str`) - The key of the key and hash value pair to search for.
+            - **identifier** (:class:`str`) - The key of the key and hash value pair to search for.
 
         **Returns**:
-            - :class:`list`[:class:`dict`] - A list containing dictionaries for every valid entry found.
+            - List [:class:`dict`] - A list containing dictionaries for every valid entry found.
         """
         sql = """
             SELECT json from {0}

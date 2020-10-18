@@ -26,16 +26,15 @@ class Manifest:
     The manager is used to download, update, and organize manifests for game data from Destiny 2.
     Bungie makes these available publicly through their api.
 
+    **Keyword Parameters**:
+        - **loc** (Optional[:class:`str`]) - The folder to store manifest data in.
+        - **headers** (Optional[:class:`dict`]) - A dict of headers to attach to any requests.
+
     .. note::
         This is an **in development** build, and will likely have many bugs.
+
     """
     def __init__(self, loc=None, headers=None):
-        """A class made to manage data from te Destiny 2 API manifests.
-
-        **Keyword Parameters**:
-            - **loc** (Optional[:class:`str`]) - The folder to store manifest data in.
-            - **headers** (Optional[:class:`dict`]) - A dict of headers to attach to any requests.
-        """
         self.manifestBase = D2_MANIFEST
         self.headers = headers
         self.loc = loc
@@ -108,14 +107,14 @@ class Manifest:
         elif self.manifests.get(language, None) == "":
             self.update_manifest(language)
 
-        if definition == "DestinyHistoricalStatsDefinition":
+        if category == "DestinyHistoricalStatsDefinition":
             hash = f"\"{hash}\""
 
         hash = self._bump_hash(hash)
         identifier = "id"
 
         with ManifestReader(self.manifests.get(language)) as reader:
-            res = reader.query(hash, definition, identifier)
+            res = reader.query(hash, category, identifier)
 
         if len(res) > 0:
             return json.loads(res[0][0])
