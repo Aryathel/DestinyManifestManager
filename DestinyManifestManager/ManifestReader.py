@@ -12,7 +12,6 @@ class ManifestReader:
         This is an **in development** build, and will likely have many bugs.
     """
     def __init__(self, manifestFile):
-        print(manifestFile)
         self.connection = sqlite3.connect(manifestFile)
         self.cursor = self.connection.cursor()
 
@@ -34,8 +33,6 @@ class ManifestReader:
             SELECT json from {0}
             WHERE {1}={2};
         """.format(definition, identifier, hash)
-
-        print(sql)
 
         self.cursor.execute(sql)
         return self.cursor.fetchall()
