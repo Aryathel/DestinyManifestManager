@@ -12,6 +12,7 @@ class ManifestReader:
         This is an **in development** build, and will likely have many bugs.
     """
     def __init__(self, manifestFile):
+        print(manifestFile)
         self.connection = sqlite3.connect(manifestFile)
         self.cursor = self.connection.cursor()
 
