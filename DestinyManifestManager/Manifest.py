@@ -137,3 +137,9 @@ class Manifest:
             file.write(data.content)
 
         return fileName
+
+    def _bump_hash(self, hash):
+        hash = int(hash)
+		if (hash & (1 << (32 - 1))) != 0:
+			hash = hash - (1 << 32)
+		return hash
