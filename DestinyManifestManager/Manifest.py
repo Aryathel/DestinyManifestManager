@@ -72,7 +72,7 @@ class Manifest:
 
         manifestJson = requests.get(self.manifestBase, headers = self.headers).json()
         manifestUrl = 'https://www.bungie.net' + manifestJson['Response']['mobileWorldContentPaths'][language]
-        manifestFileName = f"./{self.loc}{manifestUrl.split('/')[-1]}/"
+        manifestFileName = f"./{self.loc}/{manifestUrl.split('/')[-1]}/"
 
         if not os.path.isfile(manifestFileName):
             downloaded = self._download_manifest(manifestUrl)
