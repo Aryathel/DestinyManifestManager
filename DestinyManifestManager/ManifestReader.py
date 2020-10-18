@@ -34,6 +34,8 @@ class ManifestReader:
             WHERE {1}={2};
         """.format(definition, identifier, hash)
 
+        print(sql)
+
         self.cursor.execute(sql)
         return self.cursor.fetchall()
 
